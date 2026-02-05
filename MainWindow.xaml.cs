@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,6 +21,8 @@ namespace ViPKS_12_FirstTry
     {
         // Контекст базы данных
         private ViPKS_PR12Entities db = new ViPKS_PR12Entities();
+
+        private Speciality _currentSpeciality = new Speciality();
 
         public MainWindow()
         {
@@ -38,7 +41,7 @@ namespace ViPKS_12_FirstTry
                 dgDisciplines.ItemsSource = db.CurriculumDiscipline.Include("Discipline").ToList();
 
                 // Списки для ComboBox
-                textBoxSpecialityClassification.ItemsSource = db.Classification.ToList();
+                comboBoxSpecialityClassification.ItemsSource = db.Classification.ToList();
                 ComboBoxClassroomClassroomType.ItemsSource = db.ClassroomType.ToList();
                 ComboBoxStudentStudyGroup.ItemsSource = db.StudyGroup.ToList();
                 ComboBoxStudentTypeOfEducation.ItemsSource = db.TypeOfEducation.ToList();
@@ -68,7 +71,7 @@ namespace ViPKS_12_FirstTry
                 Code = textBoxSpecialityCode.Text,
                 Title = textBoxSpecialityTitle.Text,
                 TermOfEducation = textBoxSpecialityTermOfEducation.Text,
-                Classification = (Classification)textBoxSpecialityClassification.SelectedItem
+                Classification = (Classification) comboBoxSpecialityClassification.SelectedItem
             };
 
             db.Speciality.Add(spec);
@@ -181,6 +184,72 @@ namespace ViPKS_12_FirstTry
             db.Classroom.Add(room);
             db.SaveChanges();
             LoadData();
+        }
+
+        private void dgSpecialities_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgSpecialities.SelectedItem is Speciality selected)
+            {
+                _currentSpeciality = selected;
+
+                textBoxSpecialityCode.Text = selected.Code;
+                textBoxSpecialityTitle.Text = selected.Title;
+                comboBoxSpecialityClassification.SelectedItem = selected.Classification;
+                textBoxSpecialityTermOfEducation.Text = selected.TermOfEducation;
+            }
+        }
+
+        private void btnSaveSpeciality_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _currentSpeciality.Code = textBoxSpecialityCode.Text.Trim();
+                _currentSpeciality.Title = textBoxSpecialityTitle.Text.Trim();
+                _currentSpeciality.ClassificationId = ((Classification)comboBoxSpecialityClassification.SelectedItem).Id;
+                _currentSpeciality.TermOfEducation = textBoxSpecialityTermOfEducation.Text.Trim();
+
+                if (_currentSpeciality.Id == 0) db.Speciality.Add(_currentSpeciality);
+                else db.Entry(_currentSpeciality).State = System.Data.EntityState.Modified;
+
+                db.SaveChanges();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                LoadData();
+            }
+        }
+
+        private void btnCreateSpeciality_Click(object sender, RoutedEventArgs e)
+        {
+            _currentSpeciality = new Speciality();
+
+            _currentSpeciality.Id = 0L;
+            textBoxSpecialityCode.Text = "";
+            textBoxSpecialityTitle.Text = "";
+            comboBoxSpecialityClassification.SelectedIndex = 0;
+            textBoxSpecialityTermOfEducation.Text = "";
+        }
+
+        private void btnDeleteSpeciality_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Speciality specialityToDelete = db.Speciality.Where(x => x.Id == _currentSpeciality.Id).First();
+
+                db.Speciality.Remove(specialityToDelete);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                LoadData();
+            }
         }
     }
 }

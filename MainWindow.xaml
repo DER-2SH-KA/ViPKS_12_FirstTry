@@ -35,16 +35,17 @@
                                 <TextBox x:Name="textBoxSpecialityTitle" Margin="0,0,0,5"/>
                                 
                                 <Label Content="Квалификация:"/>
-                                <ComboBox x:Name="textBoxSpecialityClassification" DisplayMemberPath="Title" Margin="0,0,0,5"/>
+                                <ComboBox x:Name="comboBoxSpecialityClassification" DisplayMemberPath="Title" Margin="0,0,0,5"/>
                                 
                                 <Label Content="Срок обучения:"/>
                                 <TextBox x:Name="textBoxSpecialityTermOfEducation" Margin="0,0,0,10"/>
 
-                                <Button x:Name="btnSaveSpeciality" Content="Сохранить" Height="30" Background="LightBlue"/>
-                                <Button x:Name="btnDeleteSpeciality" Content="Удалить" Height="30" Margin="0,5,0,0" Background="LightCoral"/>
+                                <Button x:Name="btnSaveSpeciality" Content="Сохранить" Height="30" Background="LightBlue" Click="btnSaveSpeciality_Click_1"/>
+                                <Button x:Name="btnDeleteSpeciality" Content="Удалить" Height="30" Margin="0,5,0,0" Background="LightCoral" Click="btnDeleteSpeciality_Click_1"/>
+                                <Button x:Name="btnCreateSpeciality" Content="Создать" Click="btnCreateSpeciality_Click" Height="30" Margin="0,5,0,0" Background="LightBlue"/>
                             </StackPanel>
                             
-                            <DataGrid Name="dgSpecialities" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                            <DataGrid Name="dgSpecialities" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5" SelectionChanged="dgSpecialities_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Код" Binding="{Binding Code}" Width="100"/>
                                     <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="*"/>
