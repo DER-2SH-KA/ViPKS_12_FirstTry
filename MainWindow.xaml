@@ -5,8 +5,217 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViPKS_12_FirstTry"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        
+        <TabControl TabStripPlacement="Left" Background="White" Margin="5">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="14" Padding="10,15" Width="200" />
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem Header="Справочники">
+                <TabControl TabStripPlacement="Left" Margin="5">
+
+                    <TabItem Header="Специальности">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Right" Width="250" Margin="10">
+                                <TextBlock Text="Редактирование" FontWeight="Bold" Margin="0,0,0,10"/>
+                                
+                                <Label Content="Код:"/>
+                                <TextBox x:Name="textBoxSpecialityCode" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Наименование:"/>
+                                <TextBox x:Name="textBoxSpecialityTitle" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Квалификация:"/>
+                                <ComboBox x:Name="textBoxSpecialityClassification" DisplayMemberPath="Title" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Срок обучения:"/>
+                                <TextBox x:Name="textBoxSpecialityTermOfEducation" Margin="0,0,0,10"/>
+
+                                <Button x:Name="btnSaveSpeciality" Content="Сохранить" Height="30" Background="LightBlue"/>
+                                <Button x:Name="btnDeleteSpeciality" Content="Удалить" Height="30" Margin="0,5,0,0" Background="LightCoral"/>
+                            </StackPanel>
+                            
+                            <DataGrid Name="dgSpecialities" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код" Binding="{Binding Code}" Width="100"/>
+                                    <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Квалификация" Binding="{Binding Classification.Title}" Width="*" />
+                                    <DataGridTextColumn Header="Срок" Binding="{Binding TermOfEducation}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </TabItem>
+
+                    <TabItem Header="Дисциплины">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Right" Width="250" Margin="10">
+                                <TextBlock Text="Новый план" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <Label Content="План:"/>
+                                <ComboBox Name="ComboBoxCurriculumDisciplineCurriculum" DisplayMemberPath="Curriculum.Speciality.Title" Margin="0,0,0,5"/>
+
+                                <Label Content="Дисциплина:"/>
+                                <ComboBox Name="ComboBoxCurriculumDisciplineDiscipline" DisplayMemberPath="Discipline.Title" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Часы по ФГОС:"/>
+                                <TextBox Name="textBoxCurriculumDisciplineHoursForDiscipline" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Семестр:"/>
+                                <TextBox Name="textBoxCurriculumDisciplineTerm" Margin="0,0,0,10"/>
+                                
+                                <Button x:Name="btnSaveCurriculumDiscipline" Content="Сохранить" Height="30" Background="LightGreen"/>
+                            </StackPanel>
+                            <DataGrid Name="dgDisciplines" AutoGenerateColumns="False" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Шифр" Binding="{Binding Discipline.Chipher}" Width="80"/>
+                                    <DataGridTextColumn Header="Название" Binding="{Binding Discipline.Title}" Width="*" />
+                                    <DataGridTextColumn Header="Часы" Binding="{Binding HoursForDescipline}" Width="60" />
+                                    <DataGridTextColumn Header="Семестр" Binding="{Binding Term}" Width="80" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </TabItem>
+
+                    <TabItem Header="Аудитории">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Right" Width="250" Margin="10">
+                                <TextBlock Text="Параметры аудитории" FontWeight="Bold" Margin="0,0,0,10"/>
+                                
+                                <Label Content="Номер:"/>
+                                <TextBox Name="textBoxClassroomTitle" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Вместимость:"/>
+                                <TextBox x:Name="textBoxClassroomVolume" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Тип:"/>
+                                <ComboBox x:Name="ComboBoxClassroomClassroomType" DisplayMemberPath="Title" />
+
+                                <Button x:Name="btnSaveClassroom" Content="Обновить" Height="30" Margin="0,10,0,0"/>
+                            </StackPanel>
+                            <DataGrid Name="dgClassrooms" AutoGenerateColumns="False" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="150"/>
+                                    <DataGridTextColumn Header="Тип" Binding="{Binding ClassroomType.Title}" Width="150"/>
+                                    <DataGridTextColumn Header="Мест" Binding="{Binding Volume}" Width="60"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <TabItem Header="Студенты и Группы">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Header="Список студентов" Margin="5">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+                                <Button x:Name="btnStudentDelete" Content="Отчислить" Background="MistyRose" Padding="10,0" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            
+                            <DataGrid Name="dgStudents" AutoGenerateColumns="False" Margin="0,5,0,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                                    <DataGridTextColumn Header="Группа" Binding="{Binding StudyGroup.Title}" Width="80"/>
+                                    <DataGridTextColumn Header="Форма обучения" Binding="{Binding TypeOfEducation.Title}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </GroupBox>
+
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <GroupBox Header="Студент" Padding="5">
+                            <StackPanel>
+                                <Label Content="Фамилия:"/>
+                                <TextBox x:Name="TextBoxStudentLastName" Margin="0,0,0,5"/>
+
+                                <Label Content="Имя:"/>
+                                <TextBox x:Name="TextBoxStudentFirstName" Margin="0,0,0,5"/>
+
+                                <Label Content="Отчество:"/>
+                                <TextBox x:Name="TextBoxStudentMiddleName" Margin="0,0,0,5"/>
+
+                                <Label Content="Дата рождения:"/>
+                                <DatePicker x:Name="DatePickerStudentDateOfBirth" Margin="0,0,0,5"/>
+
+                                <Label Content="Группа:"/>
+                                <ComboBox x:Name="ComboBoxStudentStudyGroup" DisplayMemberPath="Title" Margin="0,0,0,5"/>
+                                
+                                <Label Content="Форма обучения:"/>
+                                <ComboBox x:Name="ComboBoxStudentTypeOfEducation" DisplayMemberPath="Title" />
+                                
+                                <Button x:Name="btnSaveStudent" Content="Сохранить" Height="35" Background="#E1F5FE"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Расписание">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Создание записи расписания" Margin="5" Grid.Row="0">
+                        <UniformGrid Columns="4" Rows="2" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Группа:"/>
+                                <ComboBox x:Name="ComboBoxScheduleStudyGroup"/>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <Label Content="Дисциплина:"/>
+                                <ComboBox x:Name="ComboBoxScheduleDiscipline"/>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <Label Content="Преподаватель:"/>
+                                <ComboBox x:Name="ComboBoxScheduleTeacher"/>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <Label Content="Аудитория:"/>
+                                <ComboBox x:Name="ComboBoxScheduleClassroom"/>
+                            </StackPanel>
+                            <StackPanel Margin="5">
+                                <Label Content="Дата и время:"/>
+                                <TextBox x:Name="TextBoxScheduleDateTime"/>
+                            </StackPanel>
+                            
+                            <Button x:Name="btnSaveSchedule" Content="Сохранить" Margin="5,24,5,5" FontWeight="Bold" Background="#C8E6C9" />
+                        </UniformGrid>
+                    </GroupBox>
+
+                    <GroupBox Header="Текущее расписание" Margin="5" Grid.Row="1">
+                        <DockPanel>
+                            <DataGrid Name="dgSchedule" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Дата и время" Binding="{Binding DateTime}" Width="100"/>
+                                    <DataGridTextColumn Header="Группа" Binding="{Binding StudyGroup.Title}" Width="80"/>
+                                    <DataGridTextColumn Header="Дисциплина" Binding="{Binding Discipline.Title}" Width="*"/>
+                                    <DataGridTextColumn Header="Преподаватель" Binding="{Binding Teacher.LastName}" Width="*"/>
+                                    <DataGridTextColumn Header="Ауд." Binding="{Binding Classroom.Title}" Width="60"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
+
 </Window>
