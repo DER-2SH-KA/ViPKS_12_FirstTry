@@ -61,11 +61,8 @@
                             <StackPanel DockPanel.Dock="Right" Width="250" Margin="10">
                                 <TextBlock Text="Новый план" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                                <Label Content="План:"/>
-                                <ComboBox Name="ComboBoxCurriculumDisciplineCurriculum" DisplayMemberPath="Curriculum.Speciality.Title" Margin="0,0,0,5"/>
-
                                 <Label Content="Дисциплина:"/>
-                                <ComboBox Name="ComboBoxCurriculumDisciplineDiscipline" DisplayMemberPath="Discipline.Title" Margin="0,0,0,5"/>
+                                <ComboBox Name="ComboBoxCurriculumDisciplineDiscipline" DisplayMemberPath="Title" Margin="0,0,0,5"/>
                                 
                                 <Label Content="Часы по ФГОС:"/>
                                 <TextBox Name="textBoxCurriculumDisciplineHoursForDiscipline" Margin="0,0,0,5"/>
@@ -73,9 +70,9 @@
                                 <Label Content="Семестр:"/>
                                 <TextBox Name="textBoxCurriculumDisciplineTerm" Margin="0,0,0,10"/>
                                 
-                                <Button x:Name="btnSaveCurriculumDiscipline" Content="Сохранить" Height="30" Background="LightGreen"/>
+                                <Button x:Name="btnSaveCurriculumDiscipline" Content="Сохранить" Height="30" Background="LightGreen" Click="btnSaveCurriculumDiscipline_Click"/>
                             </StackPanel>
-                            <DataGrid Name="dgDisciplines" AutoGenerateColumns="False" Margin="5">
+                            <DataGrid Name="dgDisciplines" AutoGenerateColumns="False" Margin="5" SelectionChanged="dgDisciplines_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Шифр" Binding="{Binding Discipline.Chipher}" Width="80"/>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Discipline.Title}" Width="*" />
@@ -100,9 +97,9 @@
                                 <Label Content="Тип:"/>
                                 <ComboBox x:Name="ComboBoxClassroomClassroomType" DisplayMemberPath="Title" />
 
-                                <Button x:Name="btnSaveClassroom" Content="Обновить" Height="30" Margin="0,10,0,0"/>
+                                <Button x:Name="btnSaveClassroom" Content="Сохранить" Height="30" Margin="0,10,0,0" Click="btnSaveClassroom_Click_1"/>
                             </StackPanel>
-                            <DataGrid Name="dgClassrooms" AutoGenerateColumns="False" Margin="5">
+                            <DataGrid Name="dgClassrooms" AutoGenerateColumns="False" Margin="5" SelectionChanged="dgClassrooms_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="150"/>
                                     <DataGridTextColumn Header="Тип" Binding="{Binding ClassroomType.Title}" Width="150"/>

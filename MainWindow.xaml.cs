@@ -23,6 +23,8 @@ namespace ViPKS_12_FirstTry
         private ViPKS_PR12Entities db = new ViPKS_PR12Entities();
 
         private Speciality _currentSpeciality = new Speciality();
+        private CurriculumDiscipline _curriculumDiscipline = new CurriculumDiscipline();
+        private Classroom _currentClassroom = new Classroom();
 
         public MainWindow()
         {
@@ -42,6 +44,7 @@ namespace ViPKS_12_FirstTry
 
                 // Списки для ComboBox
                 comboBoxSpecialityClassification.ItemsSource = db.Classification.ToList();
+                ComboBoxCurriculumDisciplineDiscipline.ItemsSource = db.Discipline.ToList();
                 ComboBoxClassroomClassroomType.ItemsSource = db.ClassroomType.ToList();
                 ComboBoxStudentStudyGroup.ItemsSource = db.StudyGroup.ToList();
                 ComboBoxStudentTypeOfEducation.ItemsSource = db.TypeOfEducation.ToList();
@@ -240,6 +243,76 @@ namespace ViPKS_12_FirstTry
                 Speciality specialityToDelete = db.Speciality.Where(x => x.Id == _currentSpeciality.Id).First();
 
                 db.Speciality.Remove(specialityToDelete);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                LoadData();
+            }
+        }
+
+        private void dgDisciplines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgDisciplines.SelectedItem is CurriculumDiscipline selected)
+            {
+                _curriculumDiscipline = selected;
+
+                ComboBoxCurriculumDisciplineDiscipline.SelectedItem = selected.Discipline;
+                textBoxCurriculumDisciplineHoursForDiscipline.Text = selected.HoursForDiscipline.ToString();
+                textBoxCurriculumDisciplineTerm.Text = selected.Term.ToString();
+            }
+        }
+
+        private void btnSaveCurriculumDiscipline_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _curriculumDiscipline.DisciplineId = ((Discipline) ComboBoxCurriculumDisciplineDiscipline.SelectedItem).Id;
+                _curriculumDiscipline.HoursForDiscipline = int.Parse(textBoxCurriculumDisciplineHoursForDiscipline.Text.Trim());
+                _curriculumDiscipline.Term = short.Parse(textBoxCurriculumDisciplineTerm.Text.Trim());
+
+                if (_curriculumDiscipline.Id == 0) db.CurriculumDiscipline.Add(_curriculumDiscipline);
+                else db.Entry(_curriculumDiscipline).State = System.Data.EntityState.Modified;
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                LoadData();
+            }
+        }
+
+        private void dgClassrooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgClassrooms.SelectedItem is Classroom selected)
+            {
+                _currentClassroom = selected;
+
+                ComboBoxClassroomClassroomType.SelectedItem = selected.ClassroomType;
+                textBoxClassroomTitle.Text = selected.Title;
+                textBoxClassroomVolume.Text = selected.Volume.ToString();
+            }
+        }
+
+        private void btnSaveClassroom_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _currentClassroom.ClassroomTypeId = ((ClassroomType)ComboBoxClassroomClassroomType.SelectedItem).Id;
+                _currentClassroom.Title = textBoxClassroomTitle.Text.Trim();
+                _currentClassroom.Volume = int.Parse(textBoxClassroomVolume.Text.Trim());
+
+                if (_currentClassroom.Id == 0) db.Classroom.Add(_currentClassroom);
+                else db.Entry(_currentClassroom).State = System.Data.EntityState.Modified;
+
                 db.SaveChanges();
             }
             catch (Exception ex)
