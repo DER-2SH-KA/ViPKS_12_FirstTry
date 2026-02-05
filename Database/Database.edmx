@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ViPKS_PR12Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Classroom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curriculum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialityId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurriculumDiscipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurriculumId" Type="bigint" Nullable="false" />
+          <Property Name="DisciplineId" Type="bigint" Nullable="false" />
+          <Property Name="HoursForDiscipline" Type="int" Nullable="false" />
+          <Property Name="Term" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentNum" />
+          </Key>
+          <Property Name="EquipmentNum" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClassroomId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleId" Type="bigint" Nullable="false" />
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="GradeValue" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LibraryItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LibraryLoan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibraryItemId" Type="bigint" Nullable="false" />
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="StudyGroupId" Type="bigint" Nullable="false" />
+          <Property Name="TeacherId" Type="bigint" Nullable="false" />
+          <Property Name="DisciplineId" Type="bigint" Nullable="false" />
+          <Property Name="ClassroomId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TermOfEducation" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClassificationId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="StudyGroupId" Type="bigint" Nullable="false" />
+          <Property Name="Passport" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudyGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SpecialityId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Passport" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Curriculum_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Curriculum">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurriculumDiscipline_Curriculum">
+          <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurriculumDiscipline" Type="Self.CurriculumDiscipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curriculum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurriculumDiscipline">
+              <PropertyRef Name="CurriculumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurriculumDiscipline_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurriculumDiscipline" Type="Self.CurriculumDiscipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurriculumDiscipline">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Student1">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibraryLoan_LibraryItem">
+          <End Role="LibraryItem" Type="Self.LibraryItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LibraryLoan" Type="Self.LibraryLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibraryItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibraryLoan">
+              <PropertyRef Name="LibraryItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibraryLoan_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LibraryLoan" Type="Self.LibraryLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibraryLoan">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_StudyGroup">
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="StudyGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Speciality_Classification">
+          <End Role="Classification" Type="Self.Classification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Speciality">
+              <PropertyRef Name="ClassificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_StudyGroup">
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="StudyGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudyGroup_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudyGroup">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ViPKS_PR12ModelContainer">
+          <EntitySet Name="Classification" EntityType="Self.Classification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classroom" EntityType="Self.Classroom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curriculum" EntityType="Self.Curriculum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurriculumDiscipline" EntityType="Self.CurriculumDiscipline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LibraryItem" EntityType="Self.LibraryItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LibraryLoan" EntityType="Self.LibraryLoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyGroup" EntityType="Self.StudyGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Curriculum_Speciality" Association="Self.FK_Curriculum_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Curriculum" EntitySet="Curriculum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurriculumDiscipline_Curriculum" Association="Self.FK_CurriculumDiscipline_Curriculum">
+            <End Role="Curriculum" EntitySet="Curriculum" />
+            <End Role="CurriculumDiscipline" EntitySet="CurriculumDiscipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurriculumDiscipline_Discipline" Association="Self.FK_CurriculumDiscipline_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="CurriculumDiscipline" EntitySet="CurriculumDiscipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Classroom" Association="Self.FK_Equipment_Classroom">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Schedule" Association="Self.FK_Grade_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Student1" Association="Self.FK_Grade_Student1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibraryLoan_LibraryItem" Association="Self.FK_LibraryLoan_LibraryItem">
+            <End Role="LibraryItem" EntitySet="LibraryItem" />
+            <End Role="LibraryLoan" EntitySet="LibraryLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibraryLoan_Student" Association="Self.FK_LibraryLoan_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="LibraryLoan" EntitySet="LibraryLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Classroom" Association="Self.FK_Schedule_Classroom">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Discipline" Association="Self.FK_Schedule_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_StudyGroup" Association="Self.FK_Schedule_StudyGroup">
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Teacher" Association="Self.FK_Schedule_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Speciality_Classification" Association="Self.FK_Speciality_Classification">
+            <End Role="Classification" EntitySet="Classification" />
+            <End Role="Speciality" EntitySet="Speciality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_StudyGroup" Association="Self.FK_Student_StudyGroup">
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudyGroup_Speciality" Association="Self.FK_StudyGroup_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ViPKS_PR12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Classification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK_Speciality_Classification" FromRole="Classification" ToRole="Speciality" />
+        </EntityType>
+        <EntityType Name="Classroom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_Classroom" FromRole="Classroom" ToRole="Equipment" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Classroom" FromRole="Classroom" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Curriculum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialityId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK_Curriculum_Speciality" FromRole="Curriculum" ToRole="Speciality" />
+          <NavigationProperty Name="CurriculumDiscipline" Relationship="Self.FK_CurriculumDiscipline_Curriculum" FromRole="Curriculum" ToRole="CurriculumDiscipline" />
+        </EntityType>
+        <EntityType Name="CurriculumDiscipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurriculumId" Type="Int64" Nullable="false" />
+          <Property Name="DisciplineId" Type="Int64" Nullable="false" />
+          <Property Name="HoursForDiscipline" Type="Int32" Nullable="false" />
+          <Property Name="Term" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Curriculum" Relationship="Self.FK_CurriculumDiscipline_Curriculum" FromRole="CurriculumDiscipline" ToRole="Curriculum" />
+          <NavigationProperty Name="Discipline" Relationship="Self.FK_CurriculumDiscipline_Discipline" FromRole="CurriculumDiscipline" ToRole="Discipline" />
+        </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CurriculumDiscipline" Relationship="Self.FK_CurriculumDiscipline_Discipline" FromRole="Discipline" ToRole="CurriculumDiscipline" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Discipline" FromRole="Discipline" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentNum" />
+          </Key>
+          <Property Name="EquipmentNum" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassroomId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Classroom" Relationship="Self.FK_Equipment_Classroom" FromRole="Equipment" ToRole="Classroom" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleId" Type="Int64" Nullable="false" />
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="GradeValue" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Grade_Schedule" FromRole="Grade" ToRole="Schedule" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Grade_Student1" FromRole="Grade" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="LibraryItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LibraryLoan" Relationship="Self.FK_LibraryLoan_LibraryItem" FromRole="LibraryItem" ToRole="LibraryLoan" />
+        </EntityType>
+        <EntityType Name="LibraryLoan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibraryItemId" Type="Int64" Nullable="false" />
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LibraryItem" Relationship="Self.FK_LibraryLoan_LibraryItem" FromRole="LibraryLoan" ToRole="LibraryItem" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_LibraryLoan_Student" FromRole="LibraryLoan" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StudyGroupId" Type="Int64" Nullable="false" />
+          <Property Name="TeacherId" Type="Int64" Nullable="false" />
+          <Property Name="DisciplineId" Type="Int64" Nullable="false" />
+          <Property Name="ClassroomId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Classroom" Relationship="Self.FK_Schedule_Classroom" FromRole="Schedule" ToRole="Classroom" />
+          <NavigationProperty Name="Discipline" Relationship="Self.FK_Schedule_Discipline" FromRole="Schedule" ToRole="Discipline" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_Grade_Schedule" FromRole="Schedule" ToRole="Grade" />
+          <NavigationProperty Name="StudyGroup" Relationship="Self.FK_Schedule_StudyGroup" FromRole="Schedule" ToRole="StudyGroup" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Schedule_Teacher" FromRole="Schedule" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TermOfEducation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassificationId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Classification" Relationship="Self.FK_Speciality_Classification" FromRole="Speciality" ToRole="Classification" />
+          <NavigationProperty Name="Curriculum" Relationship="Self.FK_Curriculum_Speciality" FromRole="Speciality" ToRole="Curriculum" />
+          <NavigationProperty Name="StudyGroup" Relationship="Self.FK_StudyGroup_Speciality" FromRole="Speciality" ToRole="StudyGroup" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudyGroupId" Type="Int64" Nullable="false" />
+          <Property Name="Passport" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_Grade_Student1" FromRole="Student" ToRole="Grade" />
+          <NavigationProperty Name="LibraryLoan" Relationship="Self.FK_LibraryLoan_Student" FromRole="Student" ToRole="LibraryLoan" />
+          <NavigationProperty Name="StudyGroup" Relationship="Self.FK_Student_StudyGroup" FromRole="Student" ToRole="StudyGroup" />
+        </EntityType>
+        <EntityType Name="StudyGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SpecialityId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_StudyGroup" FromRole="StudyGroup" ToRole="Schedule" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK_StudyGroup_Speciality" FromRole="StudyGroup" ToRole="Speciality" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_StudyGroup" FromRole="StudyGroup" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Passport" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Teacher" FromRole="Teacher" ToRole="Schedule" />
+        </EntityType>
+        <Association Name="FK_Speciality_Classification">
+          <End Role="Classification" Type="Self.Classification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Speciality">
+              <PropertyRef Name="ClassificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Classroom">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curriculum_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Curriculum">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurriculumDiscipline_Curriculum">
+          <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurriculumDiscipline" Type="Self.CurriculumDiscipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curriculum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurriculumDiscipline">
+              <PropertyRef Name="CurriculumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurriculumDiscipline_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurriculumDiscipline" Type="Self.CurriculumDiscipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurriculumDiscipline">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Student1">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibraryLoan_LibraryItem">
+          <End Role="LibraryItem" Type="Self.LibraryItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LibraryLoan" Type="Self.LibraryLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibraryItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibraryLoan">
+              <PropertyRef Name="LibraryItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibraryLoan_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LibraryLoan" Type="Self.LibraryLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibraryLoan">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_StudyGroup">
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="StudyGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudyGroup_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudyGroup">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_StudyGroup">
+          <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="StudyGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ViPKS_PR12Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classification" EntityType="Self.Classification" />
+          <EntitySet Name="Classroom" EntityType="Self.Classroom" />
+          <EntitySet Name="Curriculum" EntityType="Self.Curriculum" />
+          <EntitySet Name="CurriculumDiscipline" EntityType="Self.CurriculumDiscipline" />
+          <EntitySet Name="Discipline" EntityType="Self.Discipline" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" />
+          <EntitySet Name="LibraryItem" EntityType="Self.LibraryItem" />
+          <EntitySet Name="LibraryLoan" EntityType="Self.LibraryLoan" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="StudyGroup" EntityType="Self.StudyGroup" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK_Speciality_Classification" Association="Self.FK_Speciality_Classification">
+            <End Role="Classification" EntitySet="Classification" />
+            <End Role="Speciality" EntitySet="Speciality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Classroom" Association="Self.FK_Equipment_Classroom">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Classroom" Association="Self.FK_Schedule_Classroom">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curriculum_Speciality" Association="Self.FK_Curriculum_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Curriculum" EntitySet="Curriculum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurriculumDiscipline_Curriculum" Association="Self.FK_CurriculumDiscipline_Curriculum">
+            <End Role="Curriculum" EntitySet="Curriculum" />
+            <End Role="CurriculumDiscipline" EntitySet="CurriculumDiscipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurriculumDiscipline_Discipline" Association="Self.FK_CurriculumDiscipline_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="CurriculumDiscipline" EntitySet="CurriculumDiscipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Discipline" Association="Self.FK_Schedule_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Schedule" Association="Self.FK_Grade_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Student1" Association="Self.FK_Grade_Student1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibraryLoan_LibraryItem" Association="Self.FK_LibraryLoan_LibraryItem">
+            <End Role="LibraryItem" EntitySet="LibraryItem" />
+            <End Role="LibraryLoan" EntitySet="LibraryLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibraryLoan_Student" Association="Self.FK_LibraryLoan_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="LibraryLoan" EntitySet="LibraryLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_StudyGroup" Association="Self.FK_Schedule_StudyGroup">
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Teacher" Association="Self.FK_Schedule_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudyGroup_Speciality" Association="Self.FK_StudyGroup_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_StudyGroup" Association="Self.FK_Student_StudyGroup">
+            <End Role="StudyGroup" EntitySet="StudyGroup" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ViPKS_PR12ModelContainer" CdmEntityContainer="ViPKS_PR12Entities">
+          <EntitySetMapping Name="Classification">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Classification">
+              <MappingFragment StoreEntitySet="Classification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classroom">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Classroom">
+              <MappingFragment StoreEntitySet="Classroom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curriculum">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Curriculum">
+              <MappingFragment StoreEntitySet="Curriculum">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurriculumDiscipline">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.CurriculumDiscipline">
+              <MappingFragment StoreEntitySet="CurriculumDiscipline">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CurriculumId" ColumnName="CurriculumId" />
+                <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+                <ScalarProperty Name="HoursForDiscipline" ColumnName="HoursForDiscipline" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discipline">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Discipline">
+              <MappingFragment StoreEntitySet="Discipline">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentNum" ColumnName="EquipmentNum" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grade">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="GradeValue" ColumnName="GradeValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LibraryItem">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.LibraryItem">
+              <MappingFragment StoreEntitySet="LibraryItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LibraryLoan">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.LibraryLoan">
+              <MappingFragment StoreEntitySet="LibraryLoan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LibraryItemId" ColumnName="LibraryItemId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="StudyGroupId" ColumnName="StudyGroupId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+                <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TermOfEducation" ColumnName="TermOfEducation" />
+                <ScalarProperty Name="ClassificationId" ColumnName="ClassificationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="StudyGroupId" ColumnName="StudyGroupId" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyGroup">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.StudyGroup">
+              <MappingFragment StoreEntitySet="StudyGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="ViPKS_PR12Model.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
