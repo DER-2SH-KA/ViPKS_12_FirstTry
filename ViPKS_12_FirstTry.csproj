@@ -76,6 +76,9 @@
     <Compile Include="Database\Classroom.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\ClassroomType.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Curriculum.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,9 @@
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Teacher.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TypeOfEducation.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

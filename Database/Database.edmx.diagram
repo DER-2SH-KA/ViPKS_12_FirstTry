@@ -35,6 +35,10 @@
         <AssociationConnector Association="ViPKS_PR12Model.FK_Schedule_Teacher" ManuallyRouted="false" />
         <AssociationConnector Association="ViPKS_PR12Model.FK_StudyGroup_Speciality" ManuallyRouted="false" />
         <AssociationConnector Association="ViPKS_PR12Model.FK_Student_StudyGroup" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ViPKS_PR12Model.ClassroomType" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="ViPKS_PR12Model.TypeOfEducation" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="ViPKS_PR12Model.FK_Classroom_ClassroomType" />
+        <AssociationConnector Association="ViPKS_PR12Model.FK_Student_TypeOfEducation" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

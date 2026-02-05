@@ -78,7 +78,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Шифр" Binding="{Binding Discipline.Chipher}" Width="80"/>
                                     <DataGridTextColumn Header="Название" Binding="{Binding Discipline.Title}" Width="*" />
-                                    <DataGridTextColumn Header="Часы" Binding="{Binding HoursForDescipline}" Width="60" />
+                                    <DataGridTextColumn Header="Часы" Binding="{Binding HoursForDiscipline}" Width="60" />
                                     <DataGridTextColumn Header="Семестр" Binding="{Binding Term}" Width="80" />
                                 </DataGrid.Columns>
                             </DataGrid>

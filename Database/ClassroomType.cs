@@ -12,21 +12,16 @@ namespace ViPKS_12_FirstTry.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Classroom
+    public partial class ClassroomType
     {
-        public Classroom()
+        public ClassroomType()
         {
-            this.Equipment = new HashSet<Equipment>();
-            this.Schedule = new HashSet<Schedule>();
+            this.Classroom = new HashSet<Classroom>();
         }
     
         public long Id { get; set; }
         public string Title { get; set; }
-        public Nullable<int> Volume { get; set; }
-        public Nullable<long> ClassroomTypeId { get; set; }
     
-        public virtual ICollection<Equipment> Equipment { get; set; }
-        public virtual ICollection<Schedule> Schedule { get; set; }
-        public virtual ClassroomType ClassroomType { get; set; }
+        public virtual ICollection<Classroom> Classroom { get; set; }
     }
 }

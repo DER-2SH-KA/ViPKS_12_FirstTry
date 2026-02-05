@@ -50,8 +50,8 @@ namespace ViPKS_12_FirstTry
                 ComboBoxScheduleClassroom.ItemsSource = db.Classroom.ToList();
 
                 // Студенты и Расписание
-                dgStudents.ItemsSource = db.Student.Include(s => s.StudyGroup).Include(s => s.TypeOfEducation).ToList();
-                dgSchedule.ItemsSource = db.Schedule.Include(s => s.StudyGroup).Include(s => s.Discipline).Include(s => s.Teacher).Include(s => s.Classroom).ToList();
+                dgStudents.ItemsSource = db.Student.Include("StudyGroup").Include("TypeOfEducation").ToList();
+                dgSchedule.ItemsSource = db.Schedule.Include("StudyGroup").Include("Discipline").Include("Teacher").Include("Classroom").ToList();
             }
             catch (Exception ex)
             {

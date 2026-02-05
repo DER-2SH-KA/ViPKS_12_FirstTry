@@ -40,5 +40,7 @@ namespace ViPKS_12_FirstTry.Database
         public DbSet<StudyGroup> StudyGroup { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
+        public DbSet<ClassroomType> ClassroomType { get; set; }
+        public DbSet<TypeOfEducation> TypeOfEducation { get; set; }
     }
 }

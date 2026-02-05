@@ -26,9 +26,12 @@ namespace ViPKS_12_FirstTry.Database
         public string MiddleName { get; set; }
         public long StudyGroupId { get; set; }
         public string Passport { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public Nullable<long> TypeOfEducationId { get; set; }
     
         public virtual ICollection<Grade> Grade { get; set; }
         public virtual ICollection<LibraryLoan> LibraryLoan { get; set; }
         public virtual StudyGroup StudyGroup { get; set; }
+        public virtual TypeOfEducation TypeOfEducation { get; set; }
     }
 }

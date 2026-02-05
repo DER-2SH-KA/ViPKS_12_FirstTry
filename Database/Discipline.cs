@@ -22,6 +22,7 @@ namespace ViPKS_12_FirstTry.Database
     
         public long Id { get; set; }
         public string Title { get; set; }
+        public string Chipher { get; set; }
     
         public virtual ICollection<CurriculumDiscipline> CurriculumDiscipline { get; set; }
         public virtual ICollection<Schedule> Schedule { get; set; }
